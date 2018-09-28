@@ -26,6 +26,9 @@
 		AEE3A1B1215B6CDB004872E3 /* SCDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE3A1AF215B6CDB004872E3 /* SCDayCell.swift */; };
 		AEE3A1B2215B6CDB004872E3 /* SCDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEE3A1B0215B6CDB004872E3 /* SCDayCell.xib */; };
 		AEE3A1B6215C6B17004872E3 /* SCSubXibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE3A1B5215C6B17004872E3 /* SCSubXibView.swift */; };
+		AEE3A1B9215DBE1D004872E3 /* SCMonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE3A1B7215DBE1D004872E3 /* SCMonthCell.swift */; };
+		AEE3A1BA215DBE1D004872E3 /* SCMonthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEE3A1B8215DBE1D004872E3 /* SCMonthCell.xib */; };
+		AEE3A1BC215DBEC6004872E3 /* SCViewControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE3A1BB215DBEC6004872E3 /* SCViewControllerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		AEE3A1AF215B6CDB004872E3 /* SCDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCDayCell.swift; sourceTree = "<group>"; };
 		AEE3A1B0215B6CDB004872E3 /* SCDayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SCDayCell.xib; sourceTree = "<group>"; };
 		AEE3A1B5215C6B17004872E3 /* SCSubXibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCSubXibView.swift; sourceTree = "<group>"; };
+		AEE3A1B7215DBE1D004872E3 /* SCMonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCMonthCell.swift; sourceTree = "<group>"; };
+		AEE3A1B8215DBE1D004872E3 /* SCMonthCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SCMonthCell.xib; sourceTree = "<group>"; };
+		AEE3A1BB215DBEC6004872E3 /* SCViewControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCViewControllerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +179,8 @@
 				AEE3A1AA215B3AF0004872E3 /* SCWeekdayDescCell.xib */,
 				AEE3A1AF215B6CDB004872E3 /* SCDayCell.swift */,
 				AEE3A1B0215B6CDB004872E3 /* SCDayCell.xib */,
+				AEE3A1B7215DBE1D004872E3 /* SCMonthCell.swift */,
+				AEE3A1B8215DBE1D004872E3 /* SCMonthCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				AE4B5F792159CD94009D20BA /* SCCalendar.swift */,
+				AEE3A1BB215DBEC6004872E3 /* SCViewControllerManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -302,6 +311,7 @@
 				AE4B5F562159CCA0009D20BA /* LaunchScreen.storyboard in Resources */,
 				AEE3A1B2215B6CDB004872E3 /* SCDayCell.xib in Resources */,
 				AE4B5F532159CCA0009D20BA /* Assets.xcassets in Resources */,
+				AEE3A1BA215DBE1D004872E3 /* SCMonthCell.xib in Resources */,
 				AEE3A1AC215B3AF0004872E3 /* SCWeekdayDescCell.xib in Resources */,
 				AEE3A1A6215B36CB004872E3 /* SCCalendarMonthView.xib in Resources */,
 				AE4B5F512159CC9F009D20BA /* Main.storyboard in Resources */,
@@ -334,8 +344,10 @@
 				AEE3A1AE215B647F004872E3 /* UIColorExtension.swift in Sources */,
 				AEE3A1B1215B6CDB004872E3 /* SCDayCell.swift in Sources */,
 				AEE3A1AB215B3AF0004872E3 /* SCWeekdayDescCell.swift in Sources */,
+				AEE3A1B9215DBE1D004872E3 /* SCMonthCell.swift in Sources */,
 				AE4B5F7A2159CD94009D20BA /* SCCalendar.swift in Sources */,
 				AE4B5F4E2159CC9F009D20BA /* ViewController.swift in Sources */,
+				AEE3A1BC215DBEC6004872E3 /* SCViewControllerManager.swift in Sources */,
 				AEE3A1A4215B36B8004872E3 /* SCCalendarMonthView.swift in Sources */,
 				AEE3A1A2215B25EF004872E3 /* SCCalendarTodayView.swift in Sources */,
 				AE4B5F4C2159CC9F009D20BA /* AppDelegate.swift in Sources */,

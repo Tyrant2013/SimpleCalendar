@@ -34,12 +34,14 @@ class SCCalendarMonthView: SCSubXibView, UICollectionViewDataSource {
         contentView?.backgroundColor = UIColor.rgb(r: 230, g: 255, b: 253)
         headerCollectionView?.backgroundColor = UIColor.rgb(r: 0, g: 49, b: 41)
         contentView?.layer.cornerRadius = 10.0
+        contentView?.backgroundColor = UIColor.clear
         
         let headerNib = UINib(nibName: "SCWeekdayDescCell", bundle: nil)
         headerCollectionView?.register(headerNib, forCellWithReuseIdentifier: headerCell)
         
         let itemNib = UINib(nibName: "SCDayCell", bundle: nil)
         itemCollectionView?.register(itemNib, forCellWithReuseIdentifier: itemCell)
+        itemCollectionView?.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {

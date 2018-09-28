@@ -14,7 +14,7 @@ class SCCalendar: NSObject {
     private let HeavenlyStems = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
     private let EarthlyBranches = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
     private let weekDays = ["日", "一", "二", "三", "四", "五", "六"]
-    private let ChineseMonths = ["正月", "杏月", "桃月", "梅月", "榴月", "荷月", "兰月", "菊月", "良月", "幸月", "腊月"]
+    private let ChineseMonths = ["正月", "杏月", "桃月", "梅月", "榴月", "荷月", "兰月", "桂月", "菊月", "良月", "幸月", "腊月"]
     private let ChineseDays = ["初一", "初二", "初三", "初四", "初五", "初六", "初七", "初八", "初九", "初十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九", "二十", "廿一", "廿二", "廿三", "廿四", "廿五", "廿六", "廿七", "廿八", "廿九", "三十"]
     
     public func today() -> SCCalendarDay {
@@ -156,12 +156,12 @@ class SCCalendar: NSObject {
         let earthlyBranchesIndex = (year - 1) % EarthlyBranches.count
         let day = calendar.component(.day, from: date)
         let month = calendar.component(.month, from: date)
-        return HeavenlyStems[heavenlyStemIndex] + EarthlyBranches[earthlyBranchesIndex] + "年 " + ChineseMonths[month - 1] + ChineseDays[day - 1]
+        return HeavenlyStems[heavenlyStemIndex] + EarthlyBranches[earthlyBranchesIndex] + "年 " + ChineseMonths[month - 1] + ChineseDays[(day - 1) % 7]
     }
     private func getChineseShortDayWithDate(date: Date) -> String {
         let calendar = Calendar(identifier: .chinese)
         let day = calendar.component(.day, from: date)
-        return ChineseDays[day - 1]
+        return ChineseDays[(day - 1) % 7]
     }
     
     // MARK: 测试

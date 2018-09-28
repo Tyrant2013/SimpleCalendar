@@ -25,24 +25,35 @@
                                     <constraint firstAttribute="width" constant="280" id="mch-2W-Hqg"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ac-Ng-qwH" customClass="SCCalendarMonthView" customModule="SimpleCalendar" customModuleProvider="target">
-                                <rect key="frame" x="5" y="300" width="365" height="362"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qbp-AI-Fhw">
+                                <rect key="frame" x="0.0" y="290" width="375" height="377"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ebZ-AE-xaf">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="8T6-xD-0bg"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="6rz-Nh-F4M"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="u1G-qW-VbW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IiW-9I-MLu"/>
                             <constraint firstItem="u1G-qW-VbW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="NJx-QD-kiU"/>
-                            <constraint firstItem="7Ac-Ng-qwH" firstAttribute="top" secondItem="u1G-qW-VbW" secondAttribute="bottom" constant="10" id="Wdu-to-Koh"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7Ac-Ng-qwH" secondAttribute="bottom" constant="5" id="YOE-ms-HOs"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7Ac-Ng-qwH" secondAttribute="trailing" constant="5" id="bhR-b1-9Sp"/>
-                            <constraint firstItem="7Ac-Ng-qwH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="lf6-QY-KMy"/>
+                            <constraint firstItem="Qbp-AI-Fhw" firstAttribute="top" secondItem="u1G-qW-VbW" secondAttribute="bottom" id="Qnp-8O-1kz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Qbp-AI-Fhw" secondAttribute="trailing" id="adT-qY-LM9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Qbp-AI-Fhw" secondAttribute="bottom" id="mNx-Wa-m1S"/>
+                            <constraint firstItem="Qbp-AI-Fhw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sAE-1x-g7C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="monthView" destination="7Ac-Ng-qwH" id="mc0-dT-2bO"/>
+                        <outlet property="collectionView" destination="Qbp-AI-Fhw" id="Vjn-x4-yah"/>
                         <outlet property="todayView" destination="u1G-qW-VbW" id="ubn-hS-BEk"/>
                     </connections>
                 </viewController>
