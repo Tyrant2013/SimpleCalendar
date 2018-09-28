@@ -25,8 +25,7 @@ class SCViewControllerManager: NSObject {
         let calendar = NSCalendar(identifier: .gregorian)!
         let year = calendar.component(.year, from: date)
         curMonth = calendar.component(.month, from: date)
-        minYear = year
-        maxYear = year
+        (minYear, maxYear) = (year, year)
         
         super.init()
         makeOneYearDatas(year: year)

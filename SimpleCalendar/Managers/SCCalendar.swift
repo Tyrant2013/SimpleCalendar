@@ -57,8 +57,7 @@ class SCCalendar: NSObject {
     
     public func daysWithYear(year: Int, month: Int) -> [SCCalendarDay] {
         var dateComp = DateComponents()
-        dateComp.year = year
-        dateComp.month = month
+        (dateComp.year, dateComp.month) = (year, month)
         let date = calendar.date(from: dateComp)!
         let range = calendar.range(of: .day, in: .month, for: date)
         let week = calendar.component(.weekday, from: date)
@@ -72,8 +71,7 @@ class SCCalendar: NSObject {
                 preMonth = 12
                 preYear -= 1
             }
-            dateComp.year = preYear
-            dateComp.month = preMonth
+            (dateComp.year, dateComp.month) = (preYear, preMonth)
             let preDate = calendar.date(from: dateComp)!
             let preRange = calendar.range(of: .day, in: .month, for: preDate)!
             
@@ -98,26 +96,25 @@ class SCCalendar: NSObject {
             }
         }
         
+        let curYear = calendar.component(.year, from: self.date)
+        let curMonth = calendar.component(.month, from: self.date)
+        let curDay = calendar.component(.day, from: self.date)
         return dayTuple.map { (day, color, month, year) -> SCCalendarDay in
-            dateComp.year = year
-            dateComp.month = month
-            dateComp.day = day
+            (dateComp.year, dateComp.month, dateComp.day) = (year, month, day)
             let date = calendar.date(from: dateComp)!
-            let isToday = calendar.component(.year, from: date) == year && calendar.component(.month, from: date) == month && calendar.component(.day, from: date) == day
-            let chineseDay = getChineseDayWithDate(date: date)
-            let chineseShortDate = getChineseShortDayWithDate(date: date)
+            
             return SCCalendarDay(day: day,
                                  color: color,
                                  font: UIFont.systemFont(ofSize: 15.0),
                                  forMonth: month,
                                  forYear: year,
                                  weekdayStr: getSystemLanguageStyleWeekdayString(weekday: day),
-                                 chineseDay: chineseDay,
+                                 chineseDay: getChineseDayWithDate(date: date),
                                  dayStr: String(day),
                                  monthStr: getSystemLanguageStyleMonthString(month: month),
                                  yearStr: getSystemLanguageStyleYearString(year: year),
-                                 chineseShortDay: chineseShortDate,
-                                 isToday: isToday)
+                                 chineseShortDay: getChineseShortDayWithDate(date: date),
+                                 isToday: (curYear == year && curMonth == month && curDay == day))
         }
     }
     
@@ -150,11 +147,12 @@ class SCCalendar: NSObject {
     }
     
     private func getChineseDayWithDate(date: Date) -> String {
-        let year = calendar.component(.year, from: date)
+        let chineseCalendar = Calendar(identifier: .chinese)
+        let year = chineseCalendar.component(.year, from: date)
         let heavenlyStemIndex = (year - 1) % HeavenlyStems.count
         let earthlyBranchesIndex = (year - 1) % EarthlyBranches.count
-        let day = calendar.component(.day, from: date)
-        let month = calendar.component(.month, from: date)
+        let day = chineseCalendar.component(.day, from: date)
+        let month = chineseCalendar.component(.month, from: date)
         return HeavenlyStems[heavenlyStemIndex] + EarthlyBranches[earthlyBranchesIndex] + "年 " + ChineseMonths[month - 1] + ChineseDays[day - 1]
     }
     private func getChineseShortDayWithDate(date: Date) -> String {
