@@ -32,6 +32,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         // Do any additional setup after loading the view, typically from a nib.
         
         initDataAndView()
+        initGestureRecognizers()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,6 +41,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             loadTodayViewAnimated()
             loadMonthViewAnimated()
         }
+    }
+    
+    func initGestureRecognizers() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapRecognizer(sender:)))
+        self.todayView?.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapRecognizer(sender: UITapGestureRecognizer) {
+        let month = (todayView?.day?.forMonth)!
+        collectionView?.scrollToItem(at: IndexPath(item: (month - 1), section: 0), at: .centeredHorizontally, animated: true)
     }
     
     func initDataAndView() {
