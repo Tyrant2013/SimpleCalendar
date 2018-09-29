@@ -8,7 +8,11 @@
 
 import UIKit
 
-class SCCalendarMonthView: SCSubXibView, UICollectionViewDataSource {
+protocol SCCalendarMonthViewDelegate {
+    func monthView(_ monthView: SCCalendarMonthView, didSelectedDay day: Int, year: Int, month: Int);
+}
+
+class SCCalendarMonthView: SCSubXibView, UICollectionViewDataSource, UICollectionViewDelegate {
     
     private let headerCell = "HeaderCell"
     private let itemCell = "ItemCell"
@@ -27,6 +31,7 @@ class SCCalendarMonthView: SCSubXibView, UICollectionViewDataSource {
             itemCollectionView?.reloadData()
         }
     }
+    public var delegate: SCCalendarMonthViewDelegate?
     
     private func loadXib() {
         loadXibName(name: "SCCalendarMonthView")
@@ -99,5 +104,12 @@ class SCCalendarMonthView: SCSubXibView, UICollectionViewDataSource {
             cell.setData(day: day)
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let day = days[indexPath.row]
+        if let del = delegate {
+            del.monthView(self, didSelectedDay: day.day, year: day.forYear, month: day.forMonth)
+        }
     }
 }

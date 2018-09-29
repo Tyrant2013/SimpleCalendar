@@ -27,6 +27,15 @@ class SCCalendar: NSObject {
     
     private let date = Date()
     private let calendar = Calendar(identifier: .gregorian)
+    private var canReadCalendarData = false
+    
+    override init() {
+        super.init()
+        
+        EKEventStore().requestAccess(to: .event) { (granted, error) in
+            self.canReadCalendarData = granted
+        }
+    }
     
     public func today() -> SCCalendarDay {
         let day = calendar.component(.day, from: date)
@@ -99,23 +108,45 @@ class SCCalendar: NSObject {
         let curYear = calendar.component(.year, from: self.date)
         let curMonth = calendar.component(.month, from: self.date)
         let curDay = calendar.component(.day, from: self.date)
+        
+//        (dateComp.year, dateComp.month, dateComp.day, dateComp.hour, dateComp.minute, dateComp.second) = ()
+//        let startdate = calendar.date(from: dateComp)
+
         return dayTuple.map { (day, color, month, year) -> SCCalendarDay in
             (dateComp.year, dateComp.month, dateComp.day) = (year, month, day)
             let date = calendar.date(from: dateComp)!
-            
-            return SCCalendarDay(day: day,
-                                 color: color,
-                                 font: UIFont.systemFont(ofSize: 15.0),
-                                 forMonth: month,
-                                 forYear: year,
-                                 weekdayStr: getSystemLanguageStyleWeekdayString(weekday: day),
-                                 chineseDay: getChineseDayWithDate(date: date),
-                                 dayStr: String(day),
-                                 monthStr: getSystemLanguageStyleMonthString(month: month),
-                                 yearStr: getSystemLanguageStyleYearString(year: year),
-                                 chineseShortDay: getChineseShortDayWithDate(date: date),
-                                 isToday: (curYear == year && curMonth == month && curDay == day))
+            let retDay =  SCCalendarDay(day: day,
+                                        color: color,
+                                        font: UIFont.systemFont(ofSize: 15.0),
+                                        forMonth: month,
+                                        forYear: year,
+                                        weekdayStr: getSystemLanguageStyleWeekdayString(weekday: day),
+                                        chineseDay: getChineseDayWithDate(date: date),
+                                        dayStr: String(day),
+                                        monthStr: getSystemLanguageStyleMonthString(month: month),
+                                        yearStr: getSystemLanguageStyleYearString(year: year),
+                                        chineseShortDay: getChineseShortDayWithDate(date: date),
+                                        isToday: (curYear == year && curMonth == month && curDay == day))
+            return retDay
+            }.map({ (day) -> SCCalendarDay in
+                
+                return day
+            })
+    }
+    
+    public func getEvent(year: Int, month: Int, day: Int) -> [EKEvent]? {
+        guard canReadCalendarData else {
+            return nil
         }
+        let store = EKEventStore()
+        var dateComps = DateComponents()
+        (dateComps.year, dateComps.month, dateComps.day, dateComps.hour, dateComps.minute, dateComps.second) = (year, month, day, 0, 0, 0)
+        let date = Calendar(identifier: .gregorian).date(from: dateComps)
+        (dateComps.hour, dateComps.minute, dateComps.second) = (23, 59, 59)
+        let end = Calendar(identifier: .gregorian).date(from: dateComps)
+        let fetchCalendarEvents = store.predicateForEvents(withStart: date!, end: end!, calendars: nil)
+        let eventList = store.events(matching: fetchCalendarEvents)
+        return eventList
     }
     
     private func getSystemLanguageStyleYearString(year: Int) -> String {
@@ -130,20 +161,17 @@ class SCCalendar: NSObject {
         return "星期" + weekDays[weekday % 7]
     }
     
-    private func getEvent(start: Date, end: Date) {
+    private func getEvent(start: Date, end: Date) -> [EKEvent]? {
         let store = EKEventStore()
-        store.requestAccess(to: .event) { (granted, error) in
-            if granted {
-                let fetchCalendarEvents = store.predicateForEvents(withStart: start, end: end, calendars: nil)
-                let eventList = store.events(matching: fetchCalendarEvents)
-                let events = eventList.filter({ (event) -> Bool in
-                    return event.calendar.isSubscribed
-                })
-                for item in events {
-                    print(item)
-                }
-            }
-        }
+        let fetchCalendarEvents = store.predicateForEvents(withStart: start, end: end, calendars: nil)
+        let eventList = store.events(matching: fetchCalendarEvents)
+//        let events = eventList.filter({ (event) -> Bool in
+//            return event.calendar.isSubscribed
+//        })
+//        for item in events {
+//            print(item)
+//        }
+        return eventList
     }
     
     private func getChineseDayWithDate(date: Date) -> String {
@@ -155,6 +183,7 @@ class SCCalendar: NSObject {
         let month = chineseCalendar.component(.month, from: date)
         return HeavenlyStems[heavenlyStemIndex] + EarthlyBranches[earthlyBranchesIndex] + "年 " + ChineseMonths[month - 1] + ChineseDays[day - 1]
     }
+    
     private func getChineseShortDayWithDate(date: Date) -> String {
         let chineseCalendar = Calendar(identifier: .chinese)
         let day = chineseCalendar.component(.day, from: date)

@@ -38,6 +38,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !doOnce {
+            doOnce = true
             loadTodayViewAnimated()
             loadMonthViewAnimated()
         }
@@ -56,9 +57,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func initDataAndView() {
         let calendar = SCCalendar()
         self.todayView?.day = calendar.today()
-        
-        let nib = UINib(nibName: "SCMonthCell", bundle: nil)
-        collectionView?.register(nib, forCellWithReuseIdentifier: ItemCell)
         
         let layout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
         var itemSize = layout.itemSize
@@ -100,6 +98,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemCell, for: indexPath) as! SCMonthCell
         cell.setupDatas(days, month: indexPath.row + 1)
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! SCMonthCell
+        if let indexPath = collectionView!.indexPath(for: cell) {
+            let days = manager.monthDays[indexPath.row]
+            let destVC = segue.destination as! SCMonthDetailViewController
+            (destVC.manager, destVC.days, destVC.title) = (manager.calendarManager, days, String(indexPath.row + 1) + "月")
+        }
     }
 }
 

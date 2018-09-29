@@ -48,6 +48,7 @@
                     </collectionViewFlowLayout>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="EDI-tv-isG"/>
+                        <outlet property="delegate" destination="-1" id="9UE-UZ-A8c"/>
                     </connections>
                 </collectionView>
             </subviews>

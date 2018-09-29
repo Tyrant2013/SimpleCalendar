@@ -21,35 +21,35 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="280" height="250"/>
+            <rect key="frame" x="0.0" y="0.0" width="280" height="210"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3X-P1-NOj">
-                    <rect key="frame" x="87.666666666666686" y="73" width="105" height="107.66666666666669"/>
+                    <rect key="frame" x="87.666666666666686" y="63.000000000000007" width="105" height="107.66666666666669"/>
                     <fontDescription key="fontDescription" type="system" pointSize="90"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="戊戌年 正月初一" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUs-F4-xMb">
-                    <rect key="frame" x="20" y="190.66666666666666" width="183" height="30"/>
+                    <rect key="frame" x="20" y="175.66666666666666" width="183" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2018年" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipb-NS-ZZJ">
-                    <rect key="frame" x="20" y="15" width="130" height="48"/>
+                    <rect key="frame" x="20" y="10" width="130" height="48"/>
                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8月" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D97-av-RIv">
-                    <rect key="frame" x="195.33333333333334" y="15" width="64.666666666666657" height="48"/>
+                    <rect key="frame" x="195.33333333333334" y="10" width="64.666666666666657" height="48"/>
                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="星期三" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXa-sH-xl5">
-                    <rect key="frame" x="220" y="131" width="40" height="89.666666666666686"/>
+                    <rect key="frame" x="220" y="116" width="40" height="89.666666666666686"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="Ha2-TG-q6E"/>
                     </constraints>
@@ -60,8 +60,8 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="E3X-P1-NOj" firstAttribute="top" secondItem="ipb-NS-ZZJ" secondAttribute="bottom" constant="10" id="93Z-LS-Q2F"/>
-                <constraint firstItem="ipb-NS-ZZJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="Hok-3p-hJs"/>
+                <constraint firstItem="E3X-P1-NOj" firstAttribute="top" secondItem="ipb-NS-ZZJ" secondAttribute="bottom" constant="5" id="93Z-LS-Q2F"/>
+                <constraint firstItem="ipb-NS-ZZJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Hok-3p-hJs"/>
                 <constraint firstItem="ipb-NS-ZZJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="I1r-CN-z3f"/>
                 <constraint firstItem="hXa-sH-xl5" firstAttribute="trailing" secondItem="D97-av-RIv" secondAttribute="trailing" id="JOl-FI-iw3"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="D97-av-RIv" secondAttribute="trailing" constant="20" id="JPo-l5-JLt"/>
@@ -69,7 +69,7 @@
                 <constraint firstItem="D97-av-RIv" firstAttribute="centerY" secondItem="ipb-NS-ZZJ" secondAttribute="centerY" id="Mpb-Cw-Dds"/>
                 <constraint firstItem="gUs-F4-xMb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="hBw-KJ-AOF"/>
                 <constraint firstItem="E3X-P1-NOj" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="hRi-cw-NRI"/>
-                <constraint firstItem="gUs-F4-xMb" firstAttribute="top" secondItem="E3X-P1-NOj" secondAttribute="bottom" constant="10" id="wfn-Dt-BQG"/>
+                <constraint firstItem="gUs-F4-xMb" firstAttribute="top" secondItem="E3X-P1-NOj" secondAttribute="bottom" constant="5" id="wfn-Dt-BQG"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
